@@ -9,28 +9,19 @@
 #  <xbar.dependencies>bash,openssl</xbar.dependencies>
 #  <xbar.abouturl>https://develotters.com</xbar.abouturl>
 
-function printIcon() {
-    if (($1 < 0))
-    then
-        echo '💀'
-    elif (($1 > 0))
-    then
-        echo '👎🏾'
-    else
-        echo '👍🏾'
-    fi
-}
+SITE='x.com:443'
 
-RS=$(openssl s_client -connect twitter.com:443 <<< 'GET /' 2>&1)
+RS=$(openssl s_client -connect "$SITE" <<< 'GET /' 2>&1)
 if [ "$?" -ne 0 ]; then
-    printIcon 1
+    echo '👎🏾'
 else
     RS=$(echo "$RS" | grep ' s:\| i:' | cut -c 2-)
     case "$RS" in
-        *'DigiCert Global Root'*) printIcon 0;;
-        *) printIcon -1;;
+        *'CN=DigiCert Global Root G2') echo '👍🏾';;
+        *) echo '💀';;
     esac
 fi
 
 echo '---'
+echo "$SITE"
 echo "$RS"
