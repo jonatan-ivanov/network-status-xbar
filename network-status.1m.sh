@@ -18,7 +18,7 @@ else
     RS=$(echo "$RS" | grep ' s:\| i:' | cut -c 2-)
     case "$RS" in
         *'CN=DigiCert Global Root G2') echo '👍🏾';;
-        *) echo '💀';;
+        *) /usr/local/bin/noti -t 'MITM!' -m "$RS"; echo '💀';;
     esac
 fi
 
