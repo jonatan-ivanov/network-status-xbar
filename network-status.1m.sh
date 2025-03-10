@@ -9,7 +9,7 @@
 #  <xbar.dependencies>bash,openssl</xbar.dependencies>
 #  <xbar.abouturl>https://develotters.com</xbar.abouturl>
 
-SITE='x.com:443'
+SITE='linkedin.com:443'
 
 RS=$(openssl s_client -connect "$SITE" <<< 'GET /' 2>&1)
 if [ "$?" -ne 0 ]; then
@@ -17,7 +17,7 @@ if [ "$?" -ne 0 ]; then
 else
     RS=$(echo "$RS" | grep ' s:\| i:' | cut -c 2-)
     case "$RS" in
-        *'CN=DigiCert Global Root G2') echo '👍🏾';;
+        *'CN=DigiCert Global Root CA') echo '👍🏾';;
         *) /usr/local/bin/noti -t 'MITM!' -m "$RS"; echo '💀';;
     esac
 fi
