@@ -9,9 +9,10 @@
 #  <xbar.dependencies>bash,openssl</xbar.dependencies>
 #  <xbar.abouturl>https://develotters.com</xbar.abouturl>
 
+OPENSSL_EXEC='/usr/local/opt/openssl/bin/openssl'
 SITE='linkedin.com:443'
 
-RS=$(openssl s_client -connect "$SITE" <<< 'GET /' 2>&1)
+RS=$("$OPENSSL_EXEC" s_client -connect "$SITE" <<< 'GET /' 2>&1)
 if [ "$?" -ne 0 ]; then
     echo '👎🏾'
 else
@@ -25,3 +26,5 @@ fi
 echo '---'
 echo "$SITE"
 echo "$RS"
+echo '---'
+"$OPENSSL_EXEC" version 2>&1
