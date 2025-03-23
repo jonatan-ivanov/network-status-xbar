@@ -9,7 +9,7 @@
 #  <xbar.dependencies>bash,openssl</xbar.dependencies>
 #  <xbar.abouturl>https://develotters.com</xbar.abouturl>
 
-OPENSSL_EXEC='/usr/local/opt/openssl/bin/openssl'
+OPENSSL_EXEC='/opt/homebrew/bin/openssl'
 SITE='linkedin.com:443'
 
 RS=$("$OPENSSL_EXEC" s_client -connect "$SITE" <<< 'GET /' 2>&1)
