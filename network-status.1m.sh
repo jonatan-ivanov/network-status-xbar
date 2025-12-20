@@ -29,7 +29,7 @@ fi
 
 HOSTNAME=$(hostname)
 LOCAL_IP=$(ipconfig getifaddr en0)
-PUBLIC_IP=$(curl --silent 'https://api.ipify.org')
+PUBLIC_IP=$(curl --silent --fail 'https://api.ipify.org') || PUBLIC_IP='N/A'
 DDNS_RS=''
 
 if [ -n "$VAR_API_KEY" ]; then
