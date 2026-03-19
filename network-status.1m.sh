@@ -10,6 +10,7 @@
 #  <xbar.abouturl>https://develotters.com</xbar.abouturl>
 
 OPENSSL_EXEC='/opt/homebrew/bin/openssl'
+NOTIFICATION_CMD='/opt/homebrew/bin/noti -t MITM! -m'
 SITE='linkedin.com:443'
 
 RS=$("$OPENSSL_EXEC" s_client -connect "$SITE" <<< 'GET /' 2>&1)
@@ -19,7 +20,7 @@ else
     RS=$(echo "$RS" | grep ' s:\| i:' | cut -c 2-)
     case "$RS" in
         *'CN=DigiCert Global Root G2') echo '👍🏾';;
-        *) /usr/local/bin/noti -t 'MITM!' -m "$RS"; echo '💀';;
+        *) $NOTIFICATION_CMD "$RS"; echo '💀';;
     esac
 fi
 
