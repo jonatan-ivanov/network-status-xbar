@@ -6,7 +6,7 @@
 #  <xbar.author.github>jonatan-ivanov</xbar.author.github>
 #  <xbar.desc>Network Status Bar</xbar.desc>
 #  <xbar.image>https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Breathe-network-workgroup.svg/480px-Breathe-network-workgroup.svg.png</xbar.image>
-#  <xbar.dependencies>bash,openssl</xbar.dependencies>
+#  <xbar.dependencies>bash,openssl,noti</xbar.dependencies>
 #  <xbar.abouturl>https://develotters.com</xbar.abouturl>
 
 OPENSSL_EXEC='/opt/homebrew/bin/openssl'
@@ -24,14 +24,14 @@ else
     esac
 fi
 
-HOSTNAME=$(hostname)
-LOCAL_IP=$(ipconfig getifaddr en0)
-PUBLIC_IP=$(curl --silent --fail 'https://api.ipify.org') || PUBLIC_IP='N/A'
+# HOSTNAME=$(hostname)
+# LOCAL_IP=$(ipconfig getifaddr en0)
+# PUBLIC_IP=$(curl --silent --fail 'https://api.ipify.org') || PUBLIC_IP='N/A'
 
-echo '---'
-echo "H: $HOSTNAME"
-echo "L: $LOCAL_IP"
-echo "P: $PUBLIC_IP"
+# echo '---'
+# echo "H: $HOSTNAME"
+# echo "L: $LOCAL_IP"
+# echo "P: $PUBLIC_IP"
 echo '---'
 echo "$SITE"
 echo "$RS"
